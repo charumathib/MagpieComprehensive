@@ -1,3 +1,7 @@
+import java.util.Hashtable;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.HashSet;
 /**
  * A program to carry on conversations with a human user.
  * This is the initial version that:  
@@ -12,11 +16,27 @@
  */
 public class Magpie
 {
-    
+
+    public Magpie(){
+        for(String s : Arrays.asList("father", "mother", "sister", "brother", "aunt", "uncle", "grandma", "grandpa", "dad", "mom")){
+            this.responseMap.put(s, "family");
+        }
+
+        for(String s : Arrays.asList("dog", "cat", "fish", "sheep", "bird")){
+            this.responseMap.put(s, "pets");
+        }
+
+    }
     /** 
      * Statement which is the input
      */
     private String statement ; 
+
+    /**
+     * Request Response Map
+     */
+    private Hashtable <String, String> responseMap = new Hashtable <String, String>();
+
     /**
      * Get a default greeting   
      * @return a greeting
@@ -37,21 +57,22 @@ public class Magpie
     {
         this.statement = statement.toLowerCase();
         String response = "";
-        if (contains("no"))
-        {
-            response = "Why so negative?";
+        Set<String> responseSet = new HashSet<String>();
+        for (String key : responseMap.keySet()) { 
+            if ( contains(key)) { 
+                responseSet.add(responseMap.get(key));
+            }
         }
-        else if (contains("father", "mother", "sister", "brother", "aunt", "uncle", "grandma", "grandpa", "dad", "mom"))
-        {
-            response = "Tell me more about your family.";
-        }
-        else if (contains("cat", "dog", "fish", "sheep", "turle", "bird")){
-            response  = "Tell me more about your pets";
-        }
-        else {
-            response = getRandomResponse();
-        }
-        return response;
+
+        if(responseSet.isEmpty()){
+            if(contains("no", "nope", "never")){
+                return "Why so negative?";
+            }
+            return getRandomResponse();
+        } 
+
+        return getValidResponse(responseSet);
+
     }
 
     /**
@@ -84,7 +105,7 @@ public class Magpie
 
         return response;
     }
-    
+
     private boolean contains(String ... expected) { 
 
         for ( String s : expected) { 
@@ -93,6 +114,15 @@ public class Magpie
             }
         }
         return false;
+    }
+
+    private String getValidResponse(Set<String> responseSet){
+        String response = "Tell me more about your ";
+        for (String s : responseSet) { 
+            response += s + " and ";
+        }
+        response = response.substring(0, response.length()-4);
+        return response;
     }
 
 }
