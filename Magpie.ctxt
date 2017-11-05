@@ -10,4 +10,6 @@ comment2.text=\n\ Gives\ a\ response\ to\ a\ user\ statement\n\ \n\ @param\ stat
 comment3.params=
 comment3.target=java.lang.String\ getRandomResponse()
 comment3.text=\n\ Pick\ a\ default\ response\ to\ use\ if\ nothing\ else\ fits.\n\ @return\ a\ non-committal\ string\n
-numComments=4
+comment4.params=expected
+comment4.target=boolean\ contains(java.lang.String[])
+numComments=5

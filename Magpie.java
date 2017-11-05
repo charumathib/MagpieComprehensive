@@ -12,6 +12,11 @@
  */
 public class Magpie
 {
+    
+    /** 
+     * Statement which is the input
+     */
+    private String statement ; 
     /**
      * Get a default greeting   
      * @return a greeting
@@ -30,21 +35,20 @@ public class Magpie
      */
     public String getResponse(String statement)
     {
+        this.statement = statement.toLowerCase();
         String response = "";
-        if (statement.indexOf("no") >= 0)
+        if (contains("no"))
         {
             response = "Why so negative?";
         }
-        else if (statement.indexOf("mother") >= 0
-        || statement.indexOf("father") >= 0
-        || statement.indexOf("sister") >= 0
-        || statement.indexOf("brother") >= 0)
+        else if (contains("father", "mother", "sister", "brother", "aunt", "uncle", "grandma", "grandpa", "dad", "mom"))
         {
             response = "Tell me more about your family.";
         }
-        else if 
-
-        {
+        else if (contains("cat", "dog", "fish", "sheep", "turle", "bird")){
+            response  = "Tell me more about your pets";
+        }
+        else {
             response = getRandomResponse();
         }
         return response;
@@ -80,6 +84,15 @@ public class Magpie
 
         return response;
     }
+    
+    private boolean contains(String ... expected) { 
 
+        for ( String s : expected) { 
+            if ( this.statement.indexOf(s) >= 0) { 
+                return true ;
+            }
+        }
+        return false;
+    }
 
 }
