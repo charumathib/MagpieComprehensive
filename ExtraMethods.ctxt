@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=ExtraMethods
+comment1.params=statement\ goal\ startPos
+comment1.target=int\ findKeyword(java.lang.String,\ java.lang.String,\ int)
+comment1.text=\n\ Search\ for\ one\ word\ in\ phrase.\ The\ search\ is\ not\ case\ sensitive.\ This\ method\ will\ check\ that\ the\ given\ goal\n\ is\ not\ a\ substring\ of\ a\ longer\ string\ (so,\ for\ example,\ "I\ know"\ does\ not\ contain\ "no").\n\ \n\ @param\ statement\ \=\ the\ string\ to\ search\ \ \ \ \ \n\ @param\ goal\ \=\ the\ string\ to\ search\ for\ \ \ \ \n\ @param\ startPos\ \=\ the\ character\ of\ the\ string\ to\ begin\ the\ search\ at\ \ \ \ \ \ \ \ \n\ @return\ the\ index\ of\ the\ first\ occurrence\ of\ goal\ in\n\ \ \ \ \ \ \ \ \ statement\ or\ -1\ if\ it's\ not\ found\n
+comment2.params=statement\ goal
+comment2.target=int\ findKeyword(java.lang.String,\ java.lang.String)
+comment2.text=\n\ Search\ for\ one\ word\ in\ phrase.\ The\ search\ is\ not\ case\n\ sensitive.\ This\ method\ will\ check\ that\ the\ given\ goal\n\ is\ not\ a\ substring\ of\ a\ longer\ string\ (so,\ for\n\ example,\ "I\ know"\ does\ not\ contain\ "no").\ The\ search\n\ begins\ at\ the\ beginning\ of\ the\ string.\n\ \n\ @param\ statement\ \=the\ string\ to\ search\n\ @param\ goal\ \=the\ string\ to\ search\ for\n\ @return\ the\ index\ of\ the\ first\ occurrence\ of\ goal\ in\n\ \ \ \ \ \ \ \ \ statement\ or\ -1\ if\ it's\ not\ found\n
+numComments=3
