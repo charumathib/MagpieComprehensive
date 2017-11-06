@@ -1,7 +1,8 @@
-import java.util.Hashtable;
+import java.util.Map;
+import java.util.LinkedHashMap;
 import java.util.Arrays;
 import java.util.Set;
-import java.util.HashSet;
+import java.util.TreeSet;
 /**
  * A program to carry on conversations with a human user.
  * This is the initial version that:  
@@ -19,11 +20,19 @@ public class Magpie
 
     public Magpie(){
         for(String s : Arrays.asList("father", "mother", "sister", "brother", "aunt", "uncle", "grandma", "grandpa", "dad", "mom")){
-            this.responseMap.put(s, "family");
+            this.responseMap.put(s, "1your family");
         }
 
         for(String s : Arrays.asList("dog", "cat", "fish", "sheep", "bird")){
-            this.responseMap.put(s, "pets");
+            this.responseMap.put(s, "2your pets");
+        }
+
+        for(String s : Arrays.asList("mr.leath", "mr.cavanaugh", "mr.rue", "mr.cerrone", "Dr.kopreski", "mr.cerrone")){
+            this.responseMap.put(s.toLowerCase(), "3him, he sounds like a great teacher");
+        }
+
+        for(String s : Arrays.asList("mrs.o'shaugnessey", "dr.ross", "dr.gueye", "mrs.heath", "ms.everett")){
+            this.responseMap.put(s.toLowerCase(), "3her, she sounds like a great teacher");
         }
 
     }
@@ -35,7 +44,7 @@ public class Magpie
     /**
      * Request Response Map
      */
-    private Hashtable <String, String> responseMap = new Hashtable <String, String>();
+    private Map <String, String> responseMap = new LinkedHashMap <String, String>();
 
     /**
      * Get a default greeting   
@@ -57,9 +66,9 @@ public class Magpie
     {
         this.statement = statement.toLowerCase();
         String response = "";
-        Set<String> responseSet = new HashSet<String>();
+        Set<String> responseSet = new TreeSet<String>();
         for (String key : responseMap.keySet()) { 
-            if ( contains(key)) { 
+            if (contains(key)) { 
                 responseSet.add(responseMap.get(key));
             }
         }
@@ -117,9 +126,11 @@ public class Magpie
     }
 
     private String getValidResponse(Set<String> responseSet){
-        String response = "Tell me more about your ";
+        String response = "Tell me more about ";
+        String tempResponse = "";
         for (String s : responseSet) { 
-            response += s + " and ";
+            s = s.substring(1);
+            response += s  + " and ";
         }
         response = response.substring(0, response.length()-4);
         return response;
