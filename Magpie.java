@@ -77,6 +77,9 @@ public class Magpie
             if(contains("no", "nope", "never")){
                 return "Why so negative?";
             }
+            if(statement.trim().length() == 0){
+                return "Say something please";
+            }
             return getRandomResponse();
         } 
 
@@ -90,29 +93,9 @@ public class Magpie
      */
     private String getRandomResponse()
     {
-        final int NUMBER_OF_RESPONSES = 4;
-        double r = Math.random();
-        int whichResponse = (int)(r * NUMBER_OF_RESPONSES);
-        String response = "";
-
-        if (whichResponse == 0)
-        {
-            response = "Interesting, tell me more.";
-        }
-        else if (whichResponse == 1)
-        {
-            response = "Hmmm.";
-        }
-        else if (whichResponse == 2)
-        {
-            response = "Do you really think so?";
-        }
-        else if (whichResponse == 3)
-        {
-            response = "You don't say.";
-        }
-
-        return response;
+        String[] defaultResponses = {"Interesting, tell me more", "Hmm", "Do you really think so?", "You don't say", "Why do you think so", "Maybe...", "Oh, ok"};
+        int whichResponse = (int)(Math.random() * defaultResponses.length);
+        return defaultResponses[whichResponse];
     }
 
     private boolean contains(String ... expected) { 
